@@ -1,5 +1,6 @@
 import requests
 from flask import jsonify
+from wikidata.client import Client
 
 def make_api_request(url, PARAMS):
     """ Makes request to an end point to get data
@@ -40,3 +41,18 @@ def build_search_result(search_result):
         search_result_data.append(search_entity)
 
     return search_result_data
+
+
+def get_entity_data(wd_id):
+    client = Client()
+    entity_data = client.get(wd_id, load=True).data
+    return entity_data
+
+
+def get_item_label(wd_item, lang_code):
+
+    entity_data = get_entity_data(wd_item)['labels']
+    if lang_code not in entity_data.keys():
+        return "Nan"
+    else:
+        return entity_data[lang_code]['value']
