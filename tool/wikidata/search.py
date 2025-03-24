@@ -17,6 +17,7 @@ def make_wd_api_search_request(type='item', search='', language='en'):
         'format': 'json'
     }
 
+
     wd_search_results = make_api_request(config['API_URL'], own_params)
     search_result_data = build_search_result(wd_search_results['search'])
     return search_result_data
@@ -40,7 +41,7 @@ def get_wikidata_entity_data(ids, props="labels|description", languages=''):
         "ids": ids
     }
 
-    entityies_data = make_api_request(config['API_URL'], build_api_params(own_params))
+    entityies_data = make_api_request(config['API_URL'], own_params)
 
     if "entities" in entityies_data.keys():
         return entityies_data["entities"]

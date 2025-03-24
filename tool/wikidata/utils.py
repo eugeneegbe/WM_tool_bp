@@ -22,7 +22,6 @@ def make_api_request(url, PARAMS):
 
 def build_search_result(search_result):
     search_result_data = []
-
     for data in search_result:
         search_entity = {}
         if "id" in data.keys():
