@@ -1,5 +1,5 @@
 # Wikimedia Flask-React Blueprint
-Making it simple for Wikimedia developers to develop tools to facilitate editing on Wikimedia projects such as #Wikidata, #Wikipedia etc
+Making it simple for Wikimedia developers to develop tools to facilitate editing on Wikimedia projects such as #Wikidata, #Wikipedia etc. Built from [[https://github.com/Devking/React-Flask-App | React flask app]]
 
 
 ## Running the application 
