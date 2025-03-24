@@ -45,8 +45,10 @@ CORS(app, resources={r"/tool*": {"origins": "*"}})
 
 from tool.main.routes import main
 from tool.users.routes import users
+from tool.wikidata.routes import wikidata
 
 app.register_blueprint(main)
 app.register_blueprint(users)
+app.register_blueprint(wikidata)
 
 app.app_context().push()
