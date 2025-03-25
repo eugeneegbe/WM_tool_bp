@@ -29,7 +29,7 @@ def get_items_data():
         languages = request.args.get('languages')
 
         entity_data = get_wikidata_entity_data(languages=languages, ids=ids)
-        return jsonify(entity_data)
+        return jsonify([entity_data])
 
     except Exception as e:
         return jsonify({'error': str(e)})
