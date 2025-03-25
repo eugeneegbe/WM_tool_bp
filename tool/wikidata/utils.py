@@ -12,10 +12,12 @@ def make_api_request(url, PARAMS):
         Returns:
             data (obj): Json object of the recieved data.
     """
+
     try:
         S = requests.Session()
         r = S.get(url=url, params=PARAMS)
         data = r.json()
+
         return data
     except Exception as e:
         return jsonify(str(e))

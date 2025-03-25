@@ -1,4 +1,3 @@
-
 from wikidata.client import Client
 from .utils import make_api_request, build_search_result
 from tool import config
@@ -23,7 +22,7 @@ def make_wd_api_search_request(type='item', search='', language='en'):
     return search_result_data
 
 
-def get_wikidata_entity_data(ids, props="labels|description", languages=''):
+def get_wikidata_entity_data(ids, props="labels|descriptions", languages=''):
     """ Fetch the lable of a Wikidata entity.
 
         Parameters:
@@ -38,15 +37,16 @@ def get_wikidata_entity_data(ids, props="labels|description", languages=''):
         "action": "wbgetentities",
         "props": props,
         "languages": languages,
-        "ids": ids
+        "ids": ids,
+        "format": 'json'
     }
 
     entityies_data = make_api_request(config['API_URL'], own_params)
 
-    if "entities" in entityies_data.keys():
-        return entityies_data["entities"]
-    else:
-        return {}
+    if not entityies_data["entities"]:
+        return entityies_data
+
+    return entityies_data["entities"]
 
 
 def get_entity_data(wd_id):
