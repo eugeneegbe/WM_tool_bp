@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from .wikidata import make_wd_api_search_request, get_wikidata_entity_data
-
+from .languages import getLanguages
 
 wikidata = Blueprint('wikidata', __name__)
 
@@ -31,5 +31,15 @@ def get_items_data():
         entity_data = get_wikidata_entity_data(languages=languages, ids=ids)
         return jsonify(entity_data)
 
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+
+@wikidata.route('/api/v1/languages', methods=['GET', 'POST'])
+def get_languages():
+
+    try:
+        languages = getLanguages()
+        return jsonify(languages)
     except Exception as e:
         return jsonify({'error': str(e)})
