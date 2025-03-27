@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, jsonify, render_template 
+from flask import Blueprint, jsonify, render_template, session
 
 
 main = Blueprint('main', __name__)
@@ -7,6 +7,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET'])
 def home():
+    print(session)
     return render_template('index.html')
 
 

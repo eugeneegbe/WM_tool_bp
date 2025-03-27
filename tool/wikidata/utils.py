@@ -2,7 +2,8 @@ import requests
 from flask import jsonify
 from wikidata.client import Client
 
-def make_api_request(url, PARAMS):
+
+def make_api_get_request(url, PARAMS):
     """ Makes request to an end point to get data
 
         Parameters:
@@ -16,9 +17,32 @@ def make_api_request(url, PARAMS):
     try:
         S = requests.Session()
         r = S.get(url=url, params=PARAMS)
-        data = r.json()
 
+        data = r.json()
         return data
+
+    except Exception as e:
+        return jsonify(str(e))
+
+
+def make_api_post_request(url, PARAMS, auth_token):
+    """ Makes request to an end point to get data
+
+        Parameters:
+            url (str): The Api url end point
+            PARAMS (obj): The parameters to be used as arguments
+
+        Returns:
+            data (obj): Json object of the recieved data.
+    """
+
+    try:
+        S = requests.Session()
+        r = S.post(url=url, data=PARAMS, auth=auth_token)
+
+        data = r.json()
+        return data
+
     except Exception as e:
         return jsonify(str(e))
 
